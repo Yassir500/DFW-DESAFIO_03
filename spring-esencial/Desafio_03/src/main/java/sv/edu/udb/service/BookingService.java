@@ -18,7 +18,7 @@ public class BookingService {
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
 
-    @Transactional // 🔥 Asegura que la operación sea atómica (punto extra en rúbrica)
+    @Transactional //  Asegura que la operación sea atómica (punto extra en rúbrica)
     public Booking createBooking(Integer eventId, Integer quantity, String username) {
 
         // 1. Validar que el ID no sea nulo antes de buscar
@@ -32,7 +32,7 @@ public class BookingService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        // 2. 🔥 VALIDACIÓN DE CUPOS (Requerimiento 3.C)
+        // 2.  VALIDACIÓN DE CUPOS (Requerimiento 3.C)
         Integer reserved = bookingRepository.sumBookings(eventId);
         if (reserved == null) reserved = 0;
 
@@ -40,7 +40,7 @@ public class BookingService {
             throw new RuntimeException("No hay cupos disponibles. Espacios restantes: " + (event.getCapacity() - reserved));
         }
 
-        // 3. 🔥 PREVENCIÓN DE NullPointerException EN EL PRECIO
+        // 3.  PREVENCIÓN DE NullPointerException EN EL PRECIO
         BigDecimal price = event.getPricePerTicket();
         if (price == null) {
             throw new RuntimeException("Error: El evento seleccionado no tiene un precio definido en la base de datos.");
@@ -51,7 +51,7 @@ public class BookingService {
         booking.setUser(user);
         booking.setQuantity(quantity);
 
-        // 4. 🔥 CÁLCULO AUTOMÁTICO SEGURO
+        // 4.  CÁLCULO AUTOMÁTICO SEGURO
         BigDecimal total = price.multiply(BigDecimal.valueOf(quantity));
         booking.setTotalAmount(total);
 

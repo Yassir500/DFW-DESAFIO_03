@@ -20,19 +20,19 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
-    @JsonProperty("event_id") // 🔥 Crucial: vincula el JSON con el objeto Event
+    @JsonProperty("event_id") //  vincula el JSON con el objeto Event
     private Event event;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonProperty("user_id") // 🔥 Crucial: vincula el JSON con el objeto User
+    @JsonProperty("user_id") //  vincula el JSON con el objeto User
     private User user;
 
     @Column(nullable = false)
     private Integer quantity;
 
     @Column(name = "total_amount", nullable = false)
-    @JsonProperty("total_amount") // 🔥 Permite devolver el total calculado al HTML
+    @JsonProperty("total_amount") // Permite devolver el total calculado al HTML
     private BigDecimal totalAmount;
 
     @Column(name = "booking_date")

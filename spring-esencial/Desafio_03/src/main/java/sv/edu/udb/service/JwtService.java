@@ -11,8 +11,7 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    // 1. Usa una llave de al menos 32 caracteres y sin caracteres especiales inválidos
-    // Esta es una llave de ejemplo en Base64 (puedes usar esta misma)
+
     private final String SECRET = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
 
     public String generateToken(String username) {
@@ -39,7 +38,7 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    // Método para validar si el token es correcto (útil para tu JwtFilter)
+    // Método para validar si el token es correcto
     public boolean isTokenValid(String token, String username) {
         final String extractedUsername = extractUsername(token);
         return (extractedUsername.equals(username) && !isTokenExpired(token));

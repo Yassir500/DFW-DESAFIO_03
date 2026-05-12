@@ -71,7 +71,7 @@ async function getEvents() {
         container.innerHTML = "";
 
         data.forEach(e => {
-            // 🔥 SOLUCIÓN AL ERROR NULL: Detecta el ID sin importar el formato del JSON
+
             const idActual = e.idEvent || e.id_event;
             const precio = e.pricePerTicket || e.price_per_ticket;
 
@@ -111,7 +111,7 @@ async function bookEvent(eventId) {
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                event_id: parseInt(eventId), // Se envía como event_id para el @JsonProperty
+                event_id: parseInt(eventId),
                 quantity: parseInt(qty)
             })
         });
@@ -124,7 +124,7 @@ async function bookEvent(eventId) {
             getMyBookings();
             getEvents();
         } else {
-            // Captura el mensaje de error del backend (ej: "No hay cupos")
+
             alert("No se pudo realizar la reserva: " + (data.message || data.error || "Error interno"));
         }
     } catch (err) {
