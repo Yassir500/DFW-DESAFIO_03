@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA DE RESERVAS UDB - Desafío 3</title>
+
+    <!-- Vinculación del CSS separado -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- SECCIÓN 1: LOGIN (Punto 4.6 del entregable) -->
+<div id="login-section">
+    <h1>Iniciar Sesión</h1>
+    <p>Introduce tus credenciales para gestionar tus eventos.</p>
+
+    <input type="text" id="user" placeholder="Nombre de usuario" required>
+    <input type="password" id="pass" placeholder="Contraseña" required>
+
+    <button onclick="login()">Ingresar al Sistema</button>
+
+    <!-- Contenedor para mensajes de error visibles (Requerimiento 3.E) -->
+    <p id="login-error" class="error"></p>
+</div>
+
+<!-- SECCIÓN 2: CONTENIDO PRINCIPAL (Se muestra tras el Login exitoso) -->
+<div id="main-content" style="display:none;">
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Panel de Control</h2>
+        <button onclick="logout()" style="width: auto; padding: 5px 15px;">Cerrar Sesión</button>
+    </header>
+
+    <hr>
+
+    <!-- Listado de Eventos (Punto 3.B y 3.E) -->
+    <section>
+        <h2>Eventos Disponibles</h2>
+        <p>Selecciona un evento y la cantidad de entradas para reservar.</p>
+        <div id="eventos-list">
+            <!-- Los eventos se cargan dinámicamente desde app.js -->
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- Listado de Reservas del Usuario (Punto 3.C) -->
+    <section>
+        <h2>Mis Reservas</h2>
+        <p>Consulta el estado de tus reservas y el total calculado automáticamente.</p>
+        <div id="mis-reservas">
+            <!-- Las reservas se cargan dinámicamente desde app.js -->
+        </div>
+    </section>
+</div>
+
+<!-- Vinculación del JS separado (Debe ir al final para cargar después del HTML) -->
+<script src="js/app.js"></script>
+</body>
+</html>
